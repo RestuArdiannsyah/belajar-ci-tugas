@@ -40,19 +40,19 @@ if (session()->getFlashData('failed')) {
 
 
 <!-- Table with stripped rows -->
-<table class="table datatable">
+<table class="table datatable table-striped table-hover">
   <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col">No</th>
       <th scope="col">Nama</th>
       <th scope="col">Harga</th>
       <th scope="col">Jumlah</th>
       <th scope="col">Foto</th>
-      <th scope="col"></th>
+      <th scope="col">Aksi</th>
     </tr>
   </thead>
 
-  <tbody>
+  <tbody class="tbody-light">
     <?php foreach ($product as $index => $produk) : ?>
       <tr>
         <th scope="row"><?php echo $index + 1 ?></th>

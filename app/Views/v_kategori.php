@@ -31,14 +31,14 @@ if (session()->getFlashData('failed')) {
 </button>
 
 <!-- Table with stripped rows -->
-<table class="table datatable">
+<table class="table datatable table-striped table-hover">
   <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col">No</th>
       <th scope="col">Nama</th>
       <th scope="col">Created At</th>
       <th scope="col">Updated At</th>
-      <th scope="col"></th>
+      <th scope="col">Aksi</th>
     </tr>
   </thead>
 
