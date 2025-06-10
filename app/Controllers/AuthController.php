@@ -22,7 +22,7 @@ class AuthController extends BaseController
         if ($this->request->getPost()) {
             $rules = [
                 'username' => 'required|min_length[6]',
-                'password' => 'required|min_length[7]|numeric',
+                'password' => 'required|min_length[7]|',
             ];
 
             if ($this->validate($rules)) {
