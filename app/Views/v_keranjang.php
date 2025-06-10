@@ -50,7 +50,16 @@ if (session()->getFlashData('success')) {
   <?php echo "Total = " . number_to_currency($total, 'IDR') ?>
 </div>
 
-<button type="submit" class="btn btn-primary"><i class="bi bi-arrow-clockwise"></i> Perbarui Keranjang</button>
-<a class="btn btn-warning" href="<?php echo base_url() ?>keranjang/clear"><i class="bi bi-cart-x"></i> Kosongkan Keranjang</a>
+<div class="d-flex justify-content-between mb-3">
+  <div class="d-flex gap-2">
+    <button type="submit" class="btn btn-primary"><i class="bi bi-arrow-clockwise"></i> Perbarui Keranjang</button>
+    <a class="btn btn-warning" href="<?php echo base_url() ?>keranjang/clear"><i class="bi bi-cart-x"></i> Kosongkan Keranjang</a>
+  </div>
+  <div class="d-flex gap-2">
+    <?php if (!empty($items)) : ?>
+      <a class="btn btn-success" href="<?php echo base_url() ?>checkout"><i class="bi bi-check-circle"></i> Selesai Belanja</a>
+    <?php endif; ?>
+  </div>
+</div>
 <?php echo form_close() ?>
 <?= $this->endSection() ?>
