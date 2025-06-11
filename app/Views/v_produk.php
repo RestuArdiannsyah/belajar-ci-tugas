@@ -61,7 +61,7 @@ if (session()->getFlashData('failed')) {
         <td><?php echo $produk['jumlah'] ?> pcs</td>
         <td>
           <?php if ($produk['foto'] != '' and file_exists("img/" . $produk['foto'] . "")) : ?>
-            <img src="<?php echo base_url() . "img/" . $produk['foto'] ?>" width="80px">
+            <img class="rounded" src="<?php echo base_url() . "img/" . $produk['foto'] ?>" width="80px">
           <?php endif; ?>
         </td>
         <td>
@@ -96,7 +96,7 @@ if (session()->getFlashData('failed')) {
                   <label for="name">Jumlah</label>
                   <input type="text" name="jumlah" class="form-control" id="jumlah" value="<?= $produk['jumlah'] ?>" placeholder="Jumlah Barang" required>
                 </div>
-                <img src="<?php echo base_url() . "img/" . $produk['foto'] ?>" width="100px">
+                <img class="mt-2 rounded" src="<?php echo base_url() . "img/" . $produk['foto'] ?>" width="100px">
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" id="check" name="check" value="1">
                   <label class="form-check-label" for="check">
