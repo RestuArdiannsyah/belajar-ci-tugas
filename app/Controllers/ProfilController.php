@@ -41,7 +41,7 @@ class ProfilController extends BaseController
         return view('v_profil', $data);
     }
 
-    // Edit info pengguna (username, email, bio, posisi)
+    // Edit info pengguna (username, email, no_hp bio, posisi)
     public function editInfo()
     {
         if (!session()->get('isLoggedIn')) {
@@ -57,6 +57,7 @@ class ProfilController extends BaseController
         $validation = \Config\Services::validation();
         $validation->setRules([
             'username' => 'required|min_length[3]|max_length[50]',
+            'no_hp' => 'permit_empty|max_length[50]|regex_match[/^[\(\)\s\+0-9]{10,50}$/]',
             'email' => 'required|valid_email',
             'bio' => 'max_length[500]',
             'posisi' => 'max_length[100]'
@@ -68,6 +69,7 @@ class ProfilController extends BaseController
 
         $dataForm = [
             'username' => $this->request->getPost('username'),
+            'no_hp' => $this->request->getPost('no_hp'),
             'email' => $this->request->getPost('email'),
             'bio' => $this->request->getPost('bio'),
             'posisi' => $this->request->getPost('posisi'),
@@ -81,7 +83,25 @@ class ProfilController extends BaseController
 
         if ($existingUser) {
             return redirect()->back()->withInput()
-                ->with('error', 'Email sudah digunakan oleh pengguna lain');
+                ->with('error', 'Email sudah digunakan');
+        }
+
+        // Cek apakah username sudah digunakan user lain
+        $existingUsername = $this->userModel->where('username', $dataForm['username'])
+            ->where('id !=', $userId)
+            ->first();
+        if ($existingUsername) {
+            return redirect()->back()->withInput()
+                ->with('error', 'Username sudah digunakan');
+        }
+
+        // Cek apakah no_hp sudah digunakan user lain
+        $existingNoHp = $this->userModel->where('no_hp', $dataForm['no_hp'])
+            ->where('id !=', $userId)
+            ->first();
+        if ($existingNoHp) {
+            return redirect()->back()->withInput()
+                ->with('error', 'Nomor HP sudah digunakan');
         }
 
         // Update data
@@ -90,6 +110,9 @@ class ProfilController extends BaseController
         // Update session jika diperlukan
         session()->set([
             'username' => $dataForm['username'],
+            'no_hp' => $dataForm['no_hp'],
+            'bio' => $dataForm['bio'],
+            'posisi' => $dataForm['posisi'],
             'email' => $dataForm['email']
         ]);
 

@@ -93,6 +93,11 @@
               </div>
 
               <div class="row">
+                <div class="col-lg-3 col-md-4 label">No HP</div>
+                <div class="col-lg-9 col-md-8"><?= esc($user['no_hp'] ?? '-') ?></div>
+              </div>
+
+              <div class="row">
                 <div class="col-lg-3 col-md-4 label">Posisi</div>
                 <div class="col-lg-9 col-md-8"><?= esc($user['posisi'] ?? '-') ?></div>
               </div>
@@ -178,6 +183,15 @@
                   <div class="col-md-8 col-lg-9">
                     <input name="email" type="email" class="form-control" id="email"
                       value="<?= old('email', $user['email'] ?? '') ?>" required>
+                  </div>
+                </div>
+
+                <!-- No HP -->
+                <div class="row mb-3">
+                  <label for="no_hp" class="col-md-4 col-lg-3 col-form-label">No HP</label>
+                  <div class="col-md-8 col-lg-9">
+                    <input name="no_hp" type="text" class="form-control" id="no_hp"
+                      value="<?= old('no_hp', $user['no_hp'] ?? '') ?>" required>
                   </div>
                 </div>
 
