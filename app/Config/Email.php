@@ -39,6 +39,8 @@ class Email extends BaseConfig
      * SMTP Password
      */
     public string $SMTPPass = '';
+    // jika ingin menggunakan fitur reset pw menggunakan email akan mengirim link resert pw gunakan pw ini
+    // kezq umgp wtok tctl
 
     /**
      * SMTP Port
