@@ -37,6 +37,7 @@ class AuthController extends BaseController
                             'id' => $dataUser['id'],
                             'username' => $dataUser['username'],
                             'email' => $dataUser['email'],
+                            'no_hp' => $dataUser['no_hp'],
                             'role' => $dataUser['role'],
                             'foto_profil' => $dataUser['foto_profil'],
                             'bio' => $dataUser['bio'],
