@@ -21,7 +21,7 @@
         }
 
         th {
-            background-color:rgb(41, 41, 41);
+            background-color: rgb(41, 41, 41);
             padding: 12px;
             text-align: center;
             color: white;
@@ -90,7 +90,7 @@
     </div>
 
     <div class="footer">
-        &copy; <?= date("Y") ?> Toko Restu. All rights reserved.
+        &copy; <?= date("Y") ?> Zaybela. All rights reserved.
     </div>
 </body>
 
