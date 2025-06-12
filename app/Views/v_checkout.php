@@ -11,8 +11,8 @@
       <input type="text" class="form-control" id="nama" value="<?php echo session()->get('username'); ?>">
     </div>
     <div class="col-12">
-      <label for="alamat" class="form-label">Alamat</label>
-      <input type="text" class="form-control" id="alamat" name="alamat">
+      <label for="alamat" class="form-label">Alamat Lengkap</label>
+      <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Jl. Melati No.25, RT 04/RW 03" required>
     </div>
     <div class="col-12">
       <label for="kelurahan" class="form-label">Kelurahan</label>
