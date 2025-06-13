@@ -1,4 +1,4 @@
-# Toko Online CodeIgniter 4
+# Zaybela - Toko Online CodeIgniter 4
 
 Proyek ini adalah platform toko online yang dibangun menggunakan [CodeIgniter 4](https://codeigniter.com/). Sistem ini menyediakan beberapa fungsionalitas untuk toko online, termasuk manajemen produk, keranjang belanja, dan sistem transaksi.
 
