@@ -53,6 +53,10 @@ $routes->group('kategori', ['filter' => 'auth'], function ($routes) {
   $routes->get('delete/(:any)', 'KategoriController::delete/$1');
 });
 
+// contact routes
+$routes->get('contact', 'faqController::index', ['filter' => 'auth']);
+
+
 
 // rajaongkir api routes
 $routes->get('get-location', 'TransaksiController::getLocation', ['filter' => 'auth']);

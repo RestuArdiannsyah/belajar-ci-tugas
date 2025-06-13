@@ -3,5 +3,4 @@
      <div class="copyright">
           &copy; Copyright <strong><span>Zaybela</span></strong>. All Rights Reserved
      </div>
-     z
 </footer><!-- End Footer -->
