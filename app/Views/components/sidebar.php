@@ -48,6 +48,19 @@
         }
         ?>
 
+        <?php
+        if (session()->get('role') == 'admin') {
+        ?>
+            <li class="nav-item">
+                <a class="nav-link <?php echo (uri_string() == 'contact') ? "" : "collapsed" ?>" href="contact">
+                    <i class="bi bi-telephone"></i>
+                    <span>Contact</span>
+                </a>
+            </li><!-- End Transaksi Nav -->
+        <?php
+        }
+        ?>
+
         <li class="nav-item">
             <a class="nav-link <?php echo (uri_string() == 'faq') ? "" : "collapsed" ?>" href="faq">
                 <i class="bi bi-question-circle"></i>
