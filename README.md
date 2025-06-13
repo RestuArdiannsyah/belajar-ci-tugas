@@ -34,13 +34,13 @@ Proyek ini adalah platform toko online yang dibangun menggunakan [CodeIgniter 4]
 
 - PHP >= 8.2
 - Composer
-- Web server (XAMPP)
+- Web server (Laragon)
 
 ## Instalasi
 
 1. **Clone repository ini**
    ```bash
-   git clone [URL repository]
+   git clone https://github.com/RestuArdiannsyah/belajar-ci-tugas.git
    cd belajar-ci-tugas
    ```
 2. **Install dependensi**
