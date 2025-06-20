@@ -65,3 +65,6 @@ $routes->get('get-cost', 'TransaksiController::getCost', ['filter' => 'auth']);
 
 // faq routes
 $routes->get('faq', 'faqController::index', ['filter' => 'auth']);
+
+// Api routes
+$routes->resource('api', ['controller' => 'apiController']);
