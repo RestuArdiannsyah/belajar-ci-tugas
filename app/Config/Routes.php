@@ -57,7 +57,7 @@ $routes->group('kategori', ['filter' => 'auth'], function ($routes) {
 });
 
 // contact routes
-$routes->get('contact', 'faqController::index', ['filter' => 'auth']);
+$routes->get('contact', 'ContactController::index', ['filter' => 'auth']);
 
 // rajaongkir api routes
 $routes->get('get-location', 'TransaksiController::getLocation', ['filter' => 'auth']);
