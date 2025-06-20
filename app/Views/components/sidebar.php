@@ -23,6 +23,14 @@
                 <span>Keranjang</span>
             </a>
         </li><!-- End Keranjang Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link <?php echo (uri_string() == 'pesanan') ? "" : "collapsed" ?>" href="pesanan">
+                <i class="bi bi-bag-check"></i>
+                <span>Pesanan</span>
+            </a>
+        </li><!-- End Pesanan Nav -->
+
         <?php
         if (session()->get('role') == 'admin') {
         ?>
@@ -56,7 +64,7 @@
                     <i class="bi bi-telephone"></i>
                     <span>Contact</span>
                 </a>
-            </li><!-- End Transaksi Nav -->
+            </li><!-- End Contact Nav -->
         <?php
         }
         ?>

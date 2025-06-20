@@ -36,6 +36,9 @@ $routes->group('keranjang', ['filter' => 'auth'], function ($routes) {
 $routes->get('checkout', 'TransaksiController::checkout', ['filter' => 'auth']);
 $routes->post('buy', 'TransaksiController::buy', ['filter' => 'auth']);
 
+// pesanan routes
+$routes->get('pesanan', 'Home::pesanan', ['filter' => 'auth']);
+
 // product routes
 $routes->group('produk', function ($routes) {
   $routes->get('/', 'ProdukController::index');
@@ -55,8 +58,6 @@ $routes->group('kategori', ['filter' => 'auth'], function ($routes) {
 
 // contact routes
 $routes->get('contact', 'faqController::index', ['filter' => 'auth']);
-
-
 
 // rajaongkir api routes
 $routes->get('get-location', 'TransaksiController::getLocation', ['filter' => 'auth']);
