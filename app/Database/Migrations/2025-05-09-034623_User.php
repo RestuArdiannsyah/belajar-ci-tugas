@@ -31,23 +31,9 @@ class User extends Migration
                 'constraint' => 255,
                 'null' => FALSE,
             ],
-            'no_hp' => [
-                'type' => 'VARCHAR',
-                'constraint' => 20,
-                'null' => TRUE,
-            ],
             'foto_profil' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
-            ],
-            'bio' => [
-                'type' => 'TEXT',
-                'null' => TRUE,
-            ],
-            'posisi' => [
-                'type' => 'VARCHAR',
-                'constraint' => 100,
-                'null' => TRUE,
             ],
             'role' => [
                 'type' => 'VARCHAR',

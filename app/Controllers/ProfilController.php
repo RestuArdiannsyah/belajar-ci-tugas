@@ -41,7 +41,7 @@ class ProfilController extends BaseController
         return view('v_profil', $data);
     }
 
-    // Edit info pengguna (username, email, no_hp bio, posisi)
+    // Edit info pengguna (username dan email)
     public function editInfo()
     {
         if (!session()->get('isLoggedIn')) {
@@ -57,10 +57,7 @@ class ProfilController extends BaseController
         $validation = \Config\Services::validation();
         $validation->setRules([
             'username' => 'required|min_length[3]|max_length[50]',
-            'no_hp' => 'permit_empty|max_length[50]|regex_match[/^[\(\)\s\+0-9]{10,50}$/]',
-            'email' => 'required|valid_email',
-            'bio' => 'max_length[500]',
-            'posisi' => 'max_length[100]'
+            'email' => 'required|valid_email'
         ]);
 
         if (!$validation->withRequest($this->request)->run()) {
@@ -69,10 +66,7 @@ class ProfilController extends BaseController
 
         $dataForm = [
             'username' => $this->request->getPost('username'),
-            'no_hp' => $this->request->getPost('no_hp'),
             'email' => $this->request->getPost('email'),
-            'bio' => $this->request->getPost('bio'),
-            'posisi' => $this->request->getPost('posisi'),
             'updated_at' => date("Y-m-d H:i:s")
         ];
 
@@ -95,31 +89,16 @@ class ProfilController extends BaseController
                 ->with('error', 'Username sudah digunakan');
         }
 
-        // Cek apakah no_hp sudah digunakan user lain
-        $existingNoHp = $this->userModel->where('no_hp', $dataForm['no_hp'])
-            ->where('id !=', $userId)
-            ->first();
-        if ($existingNoHp) {
-            return redirect()->back()->withInput()
-                ->with('error', 'Nomor HP sudah digunakan');
-        }
-
         // Update data
         $this->userModel->update($userId, $dataForm);
 
         // Update session jika diperlukan
         session()->set([
             'username' => $dataForm['username'],
-            'no_hp' => $dataForm['no_hp'],
-            'bio' => $dataForm['bio'],
-            'posisi' => $dataForm['posisi'],
             'email' => $dataForm['email']
         ]);
 
         return redirect('profil')->with('success', 'Informasi profil berhasil diperbarui');
-
-        // Update data
-        $this->userModel->update($userId, $dataForm);
     }
 
     // Edit foto profil
@@ -129,7 +108,6 @@ class ProfilController extends BaseController
         $username = session()->get('username');
         $user = $this->userModel->where('username', $username)->first();
         $userId = $user['id'];
-        // Update data
 
         $userData = $this->userModel->find($userId);
 
@@ -188,7 +166,6 @@ class ProfilController extends BaseController
         $username = session()->get('username');
         $user = $this->userModel->where('username', $username)->first();
         $userId = $user['id'];
-        // Update data
 
         $userData = $this->userModel->find($userId);
 
@@ -216,13 +193,6 @@ class ProfilController extends BaseController
                 ]
             ]
         ]);
-
-        // Validasi input default
-        // $validation->setRules([
-        //     'password_lama' => 'required',
-        //     'password_baru' => 'required|min_length[7]',
-        //     'konfirmasi_password' => 'required|matches[password_baru]'
-        // ]);
 
         if (!$validation->withRequest($this->request)->run()) {
             return redirect()->back()->with('errors', $validation->getErrors());

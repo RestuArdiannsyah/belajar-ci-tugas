@@ -14,12 +14,9 @@ class UserSeeder extends Seeder
             $data = [
                 'username' => $faker->userName,
                 'email' => $faker->email,
-                'no_hp' => $faker->phoneNumber, // Random phone number
                 'password' => password_hash('1234567', PASSWORD_DEFAULT),
                 'role' => $faker->randomElement(['admin', 'guest']),
                 'foto_profil' => 'default.jpeg', // Default profile picture
-                'bio' => $faker->text(200), // Random bio text with max 200 characters
-                'posisi' => $faker->jobTitle, // Added position using faker jobTitle
                 'created_at' => date("Y-m-d H:i:s"),
             ];
             //print_r($data);

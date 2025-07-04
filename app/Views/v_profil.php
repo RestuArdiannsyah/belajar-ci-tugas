@@ -38,9 +38,6 @@
 
           <!-- Nama -->
           <h2><?= esc($user['username'] ?? 'Nama Pengguna') ?></h2>
-
-          <!-- Posisi -->
-          <h3 class="mt-2"><?= esc($user['posisi']) ?></h3>
         </div>
       </div>
 
@@ -75,31 +72,16 @@
             <!-- Profile Overview -->
             <div class="tab-pane fade show active profile-overview" id="profile-overview">
 
-              <?php if (!empty($user['bio'])): ?>
-                <h5 class="card-title">Bio</h5>
-                <p class="small fst-italic"><?= nl2br(esc($user['bio'])) ?></p>
-              <?php endif; ?>
-
               <h5 class="card-title">Profile Details</h5>
 
               <div class="row">
-                <div class="col-lg-3 col-md-4 label">Nama Lengkap</div>
+                <div class="col-lg-3 col-md-4 label">Username</div>
                 <div class="col-lg-9 col-md-8"><?= esc($user['username'] ?? '-') ?></div>
               </div>
 
               <div class="row">
                 <div class="col-lg-3 col-md-4 label">Email</div>
                 <div class="col-lg-9 col-md-8"><?= esc($user['email'] ?? '-') ?></div>
-              </div>
-
-              <div class="row">
-                <div class="col-lg-3 col-md-4 label">No HP</div>
-                <div class="col-lg-9 col-md-8"><?= esc($user['no_hp'] ?? '-') ?></div>
-              </div>
-
-              <div class="row">
-                <div class="col-lg-3 col-md-4 label">Posisi</div>
-                <div class="col-lg-9 col-md-8"><?= esc($user['posisi'] ?? '-') ?></div>
               </div>
 
               <div class="row">
@@ -161,19 +143,10 @@
 
                 <!-- Username -->
                 <div class="row mb-3">
-                  <label for="username" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
+                  <label for="username" class="col-md-4 col-lg-3 col-form-label">Username</label>
                   <div class="col-md-8 col-lg-9">
                     <input name="username" type="text" class="form-control" id="username"
                       value="<?= old('username', $user['username'] ?? '') ?>" required>
-                  </div>
-                </div>
-
-                <!-- Bio -->
-                <div class="row mb-3">
-                  <label for="bio" class="col-md-4 col-lg-3 col-form-label">Bio</label>
-                  <div class="col-md-8 col-lg-9">
-                    <textarea name="bio" class="form-control" id="bio" style="height: 100px"
-                      placeholder="Ceritakan tentang diri Anda..."><?= old('bio', $user['bio'] ?? '') ?></textarea>
                   </div>
                 </div>
 
@@ -183,24 +156,6 @@
                   <div class="col-md-8 col-lg-9">
                     <input name="email" type="email" class="form-control" id="email"
                       value="<?= old('email', $user['email'] ?? '') ?>" required>
-                  </div>
-                </div>
-
-                <!-- No HP -->
-                <div class="row mb-3">
-                  <label for="no_hp" class="col-md-4 col-lg-3 col-form-label">No HP</label>
-                  <div class="col-md-8 col-lg-9">
-                    <input name="no_hp" type="text" class="form-control" id="no_hp"
-                      value="<?= old('no_hp', $user['no_hp'] ?? '') ?>" required>
-                  </div>
-                </div>
-
-                <!-- Posisi -->
-                <div class="row mb-3">
-                  <label for="posisi" class="col-md-4 col-lg-3 col-form-label">Posisi</label>
-                  <div class="col-md-8 col-lg-9">
-                    <input name="posisi" type="text" class="form-control" id="posisi"
-                      value="<?= old('posisi', $user['posisi'] ?? '') ?>" required>
                   </div>
                 </div>
 
