@@ -82,7 +82,7 @@ Ketika klik "Selesai Belanja", diarahkan ke halaman checkout yang berisi:
 - Tombol "Buat Pesanan"
 
 ### **4.2 Setelah Checkout**
-- Jika berhasil, produk yang dibeli tersimpan pada menu pesanan.
+- Jika berhasil, produk yang dibeli tersimpan pada menu profile.
 - Otomatis diarahkan ke halaman home.
 
 ---
@@ -136,7 +136,7 @@ Ketika tombol "Ubah" diklik:
 
 ### **6.4 Fitur Hapus Produk**
 Ketika tombol "Hapus" diklik:
-- Muncul validasi konfirmasi penghapusan
+- Muncul validasi penghapusan
 
 ---
 
@@ -167,7 +167,7 @@ Ketika tombol "Edit" diklik:
 
 ### **7.5 Fitur Hapus Diskon**
 Ketika tombol "Hapus" diklik:
-- Muncul modal konfirmasi penghapusan
+- Muncul validasi penghapusan
 - Pilihan "Ya" atau "Tidak"
 
 ---
