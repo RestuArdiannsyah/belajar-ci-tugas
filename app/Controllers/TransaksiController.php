@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\TransactionModel;
 use App\Models\TransactionDetailModel;
+use App\Models\DiskonModel;
 
 class TransaksiController extends BaseController
 {
@@ -12,6 +13,7 @@ class TransaksiController extends BaseController
     protected $apiKey;
     protected $transactionModel;
     protected $transactionDetailModel;
+    protected $diskonModel;
 
     //c
     function __construct()
@@ -27,6 +29,7 @@ class TransaksiController extends BaseController
         // untuk menginisialisasi model transaksi dan detail transaksi
         $this->transactionModel = new TransactionModel();
         $this->transactionDetailModel = new TransactionDetailModel();
+        $this->diskonModel = new DiskonModel();
     }
 
     public function index()
@@ -38,14 +41,43 @@ class TransaksiController extends BaseController
 
     public function cart_add()
     {
+        $harga_asli = $this->request->getPost('harga');
+        $harga_final = $harga_asli;
+        $diskon_amount = 0;
+        
+        // Cek apakah ada diskon untuk hari ini
+        $today = date('Y-m-d');
+        $diskon_hari_ini = $this->diskonModel->where('tanggal', $today)->first();
+        
+        if ($diskon_hari_ini) {
+            $diskon_amount = $diskon_hari_ini['nominal'];
+            $harga_final = $harga_asli - $diskon_amount;
+            
+            // Pastikan harga tidak negatif
+            if ($harga_final < 0) {
+                $harga_final = 0;
+            }
+        }
+
         $this->cart->insert(array(
             'id'        => $this->request->getPost('id'),
             'qty'       => 1,
-            'price'     => $this->request->getPost('harga'),
+            'price'     => $harga_final,
             'name'      => $this->request->getPost('nama'),
-            'options'   => array('foto' => $this->request->getPost('foto'))
+            'options'   => array(
+                'foto' => $this->request->getPost('foto'),
+                'harga_asli' => $harga_asli,
+                'diskon' => $diskon_amount
+            )
         ));
-        session()->setflashdata('success', 'Produk berhasil ditambahkan ke keranjang. (<a href="' . base_url() . 'keranjang">Lihat</a>)');
+        
+        $message = 'Produk berhasil ditambahkan ke keranjang.';
+        if ($diskon_amount > 0) {
+            $message .= ' Diskon Rp ' . number_format($diskon_amount, 0, ',', '.') . ' telah diterapkan!';
+        }
+        $message .= ' (<a href="' . base_url() . 'keranjang">Lihat</a>)';
+        
+        session()->setflashdata('success', $message);
         return redirect()->to(base_url('/'));
     }
 
@@ -168,7 +200,7 @@ class TransaksiController extends BaseController
                     'transaction_id' => $last_insert_id,
                     'product_id' => $value['id'],
                     'jumlah' => $value['qty'],
-                    'diskon' => 0,
+                    'diskon' => isset($value['options']['diskon']) ? $value['options']['diskon'] : 0,
                     'subtotal_harga' => $value['qty'] * $value['price'],
                     'created_at' => date("Y-m-d H:i:s"),
                     'updated_at' => date("Y-m-d H:i:s")
@@ -179,7 +211,7 @@ class TransaksiController extends BaseController
 
             $this->cart->destroy();
 
-            return redirect()->to(base_url());
+            return redirect()->to(base_url(''));
         }
     }
 }

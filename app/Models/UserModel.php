@@ -13,7 +13,6 @@ class UserModel extends Model
         'email',
         'password',
         'role',
-        'foto_profil',
         'created_at',
         'updated_at'
     ];

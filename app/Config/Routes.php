@@ -9,15 +9,6 @@ use CodeIgniter\Router\RouteCollection;
 //  home routes
 $routes->get('/', 'Home::index', ['filter' => 'auth']);
 
-// profile routes
-$routes->group('profil', ['filter' => 'auth'], function ($routes) {
-  $routes->get('', 'ProfilController::index');
-  $routes->get('hapus/foto', 'ProfilController::hapusFoto');      // for foto_profil
-  $routes->post('edit/info', 'ProfilController::editInfo');      // for username, email, bio
-  $routes->post('edit/foto', 'ProfilController::editFoto');      // for foto_profil
-  $routes->post('edit/password', 'ProfilController::editPassword'); // for password
-});
-
 // login and logout routes
 $routes->get('login', 'AuthController::login');
 $routes->post('login', 'AuthController::login', ['filer'  => 'redirect']);
@@ -36,8 +27,8 @@ $routes->group('keranjang', ['filter' => 'auth'], function ($routes) {
 $routes->get('checkout', 'TransaksiController::checkout', ['filter' => 'auth']);
 $routes->post('buy', 'TransaksiController::buy', ['filter' => 'auth']);
 
-// pesanan routes
-$routes->get('pesanan', 'Home::pesanan', ['filter' => 'auth']);
+// profil routes
+$routes->get('profile', 'Home::profile', ['filter' => 'auth']);
 
 // product routes
 $routes->group('produk', function ($routes) {
@@ -48,6 +39,14 @@ $routes->group('produk', function ($routes) {
   $routes->get('delete/(:num)', 'ProdukController::delete/$1');
 });
 
+// diskon routes
+$routes->group('diskon', ['filter' => 'auth'], function ($routes) {
+  $routes->get('', 'DiskonController::index');
+  $routes->post('', 'DiskonController::create');
+  $routes->post('edit/(:any)', 'DiskonController::edit/$1');
+  $routes->get('delete/(:any)', 'DiskonController::delete/$1');
+});
+
 // kategori routes
 $routes->group('kategori', ['filter' => 'auth'], function ($routes) {
   $routes->get('', 'KategoriController::index');
@@ -55,9 +54,6 @@ $routes->group('kategori', ['filter' => 'auth'], function ($routes) {
   $routes->post('edit/(:any)', 'KategoriController::edit/$1');
   $routes->get('delete/(:any)', 'KategoriController::delete/$1');
 });
-
-// contact routes
-$routes->get('contact', 'ContactController::index', ['filter' => 'auth']);
 
 // rajaongkir api routes
 $routes->get('get-location', 'TransaksiController::getLocation', ['filter' => 'auth']);

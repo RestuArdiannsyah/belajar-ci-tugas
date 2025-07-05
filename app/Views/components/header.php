@@ -16,6 +16,14 @@
           </form>
      </div><!-- End Search Bar -->
 
+     <?php if (session()->has('diskon_nominal')): ?>
+          <div class="p-2 rounded text-white bg-success py-2" style="font-size: 13px;">
+               Hari ini ada diskon
+               <span class="fw-bold"><?= number_format(session('diskon_nominal'), 0, ',', '.') ?> </span>
+               per item
+          </div>
+     <?php endif; ?><!-- end diskon header -->
+
      <nav class="header-nav ms-auto">
           <ul class="d-flex align-items-center">
 
@@ -169,7 +177,7 @@
                <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                         <img src="<?= base_url('img/profil/' . session()->get('foto_profil')); ?>" alt="Profile" class="rounded-circle">
+                         <img src="<?= base_url() ?>NiceAdmin/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
                          <span class="d-none d-md-block dropdown-toggle ps-2"><?= session()->get('username'); ?> </span>
                     </a><!-- End Profile Iamge Icon -->
 

@@ -49,8 +49,18 @@ class ApiController extends ResourceController
                 $penjualan = $this->transaction->findAll();
 
                 foreach ($penjualan as &$pj) {
-                    $pj['details'] = $this->transaction_detail->where('transaction_id', $pj['id'])->findAll();
+                $details = $this->transaction_detail->where('transaction_id', $pj['id'])->findAll();
+                
+                // Hitung jumlah item
+                $jumlah_item = 0;
+                foreach ($details as $d) {
+                    $jumlah_item += $d['jumlah'];
                 }
+
+                $pj['details'] = $details;
+                $pj['jumlah_item'] = $jumlah_item;
+            }
+
 
                 $data['status'] = ["code" => 200, "description" => "OK"];
                 $data['results'] = $penjualan;
@@ -59,6 +69,7 @@ class ApiController extends ResourceController
 
         return $this->respond($data);
     }
+    
 
     /**
      * Return the properties of a resource object.

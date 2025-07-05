@@ -52,10 +52,14 @@ History Transaksi Pembelian <strong><?= $username ?></strong>
                         <img src="<?php echo base_url() . "img/" . $item2['foto'] ?>" width="100px" class="rounded" alt="Foto Produk">
                       <?php endif; ?>
                       <strong><?= $item2['nama'] ?></strong>
-                      <?= number_to_currency($item2['harga'], 'IDR') ?>
+                      <span class="bg-primary p-1 rounded text-white"><?= number_to_currency($item2['harga'], 'IDR') ?></span>
                       <br>
-                      <?= "(" . $item2['jumlah'] . " pcs)" ?><br>
-                      <?= number_to_currency($item2['subtotal_harga'], 'IDR') ?>
+                      <div class="mt-2">
+                        <?= "(" . $item2['jumlah'] . " pcs)" ?>
+                        <span class="bg-primary p-1 rounded text-white">
+                          <?= number_to_currency($item2['subtotal_harga'], 'IDR') ?>
+                        </span>
+                      </div>
                       <hr>
                   <?php
                     endforeach;

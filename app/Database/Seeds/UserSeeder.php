@@ -16,7 +16,6 @@ class UserSeeder extends Seeder
                 'email' => $faker->email,
                 'password' => password_hash('1234567', PASSWORD_DEFAULT),
                 'role' => $faker->randomElement(['admin', 'guest']),
-                'foto_profil' => 'default.jpeg', // Default profile picture
                 'created_at' => date("Y-m-d H:i:s"),
             ];
             //print_r($data);

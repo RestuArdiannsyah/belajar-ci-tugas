@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\DiskonModel;
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -38,9 +39,19 @@ class AuthController extends BaseController
                             'username' => $dataUser['username'],
                             'email' => $dataUser['email'],
                             'role' => $dataUser['role'],
-                            'foto_profil' => $dataUser['foto_profil'],
                             'isLoggedIn' => TRUE
                         ]);
+
+                        // mengecek apakah ketika login di hari itu ada diskon 
+                        $diskonModel = new DiskonModel();
+                        $diskon = $diskonModel->where('tanggal', date('Y-m-d'))->first();
+
+                        if ($diskon) {
+                            session()->set([
+                                'diskon_nominal' => $diskon['nominal'],
+                                'diskon_tanggal' => $diskon['tanggal']
+                            ]);
+                        }
 
                         return redirect()->to(base_url('/'));
                     } else {
